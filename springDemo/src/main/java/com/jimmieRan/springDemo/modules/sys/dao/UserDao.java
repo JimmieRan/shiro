@@ -1,15 +1,32 @@
 package com.jimmieRan.springDemo.modules.sys.dao;
 
-import java.util.List;
+
+import com.jimmieRan.springDemo.modules.sys.entity.User;
+
+import java.util.Set;
 
 /**
- * Created by rj on 16-12-26.
+ * <p>User: Zhang Kaitao
+ * <p>Date: 14-1-28
+ * <p>Version: 1.0
  */
 public interface UserDao {
 
-    int deleteUser();
+    public User createUser(User user);
 
-    int addUser();
+    public void updateUser(User user);
 
-    List selectAllUser();
+    public void deleteUser(Long userId);
+
+    public void correlationRoles(Long userId, Long... roleIds);
+
+    public void uncorrelationRoles(Long userId, Long... roleIds);
+
+    User findOne(Long userId);
+
+    User findByUsername(String username);
+
+    Set<String> findRoles(String username);
+
+    Set<String> findPermissions(String username);
 }
