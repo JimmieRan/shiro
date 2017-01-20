@@ -3,8 +3,11 @@ package com.jimmieRan.springDemo.modules.sys.service;
 
 import com.jimmieRan.springDemo.modules.sys.dao.UserDao;
 import com.jimmieRan.springDemo.modules.sys.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,19 +15,16 @@ import java.util.Set;
  * <p>Date: 14-1-28
  * <p>Version: 1.0
  */
-public class UserServiceImpl implements UserService {
+@Service(value = "userService")
+public class UserServiceIImpl implements UserServiceI {
 
+
+    @Autowired
     private UserDao userDao;
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
+    @Autowired
     private PasswordHelper passwordHelper;
-
-    public void setPasswordHelper(PasswordHelper passwordHelper) {
-        this.passwordHelper = passwordHelper;
-    }
+    @Autowired
+    private RoleService roleService;
 
     /**
      * 创建用户
@@ -34,6 +34,14 @@ public class UserServiceImpl implements UserService {
         //加密密码
         passwordHelper.encryptPassword(user);
         return userDao.createUser(user);
+    }
+
+    public User updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    public void deleteUser(Long userId) {
+        userDao.deleteUser(userId);
     }
 
     /**
@@ -48,23 +56,12 @@ public class UserServiceImpl implements UserService {
         userDao.updateUser(user);
     }
 
-    /**
-     * 添加用户-角色关系
-     * @param userId
-     * @param roleIds
-     */
-    public void correlationRoles(Long userId, Long... roleIds) {
-        userDao.correlationRoles(userId, roleIds);
+    public User findOne(Long userId) {
+        return userDao.findOne(userId);
     }
 
-
-    /**
-     * 移除用户-角色关系
-     * @param userId
-     * @param roleIds
-     */
-    public void uncorrelationRoles(Long userId, Long... roleIds) {
-        userDao.uncorrelationRoles(userId, roleIds);
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 
     /**
@@ -82,7 +79,11 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public Set<String> findRoles(String username) {
-        return userDao.findRoles(username);
+        User user =findByUsername(username);
+        if(user == null) {
+            return Collections.EMPTY_SET;
+        }
+        return roleService.findRoles(user.getRoleIds().toArray(new Long[0]));
     }
 
     /**
@@ -91,7 +92,10 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public Set<String> findPermissions(String username) {
-        return userDao.findPermissions(username);
+        User user =findByUsername(username);
+        if(user == null) {
+            return Collections.EMPTY_SET;
+        }
+        return roleService.findPermissions(user.getRoleIds().toArray(new Long[0]));
     }
-
 }

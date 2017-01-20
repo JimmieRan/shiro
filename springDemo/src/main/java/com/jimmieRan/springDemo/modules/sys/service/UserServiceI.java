@@ -2,8 +2,8 @@ package com.jimmieRan.springDemo.modules.sys.service;
 
 
 import com.jimmieRan.springDemo.modules.sys.entity.User;
-import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -11,14 +11,17 @@ import java.util.Set;
  * <p>Date: 14-1-28
  * <p>Version: 1.0
  */
-@Service(value = "userService")
-public interface UserService {
+public interface UserServiceI {
 
     /**
      * 创建用户
      * @param user
      */
     public User createUser(User user);
+
+    public User updateUser(User user);
+
+    public void deleteUser(Long userId);
 
     /**
      * 修改密码
@@ -27,20 +30,10 @@ public interface UserService {
      */
     public void changePassword(Long userId, String newPassword);
 
-    /**
-     * 添加用户-角色关系
-     * @param userId
-     * @param roleIds
-     */
-    public void correlationRoles(Long userId, Long... roleIds);
 
+    User findOne(Long userId);
 
-    /**
-     * 移除用户-角色关系
-     * @param userId
-     * @param roleIds
-     */
-    public void uncorrelationRoles(Long userId, Long... roleIds);
+    List<User> findAll();
 
     /**
      * 根据用户名查找用户

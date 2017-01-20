@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <%--
   Created by IntelliJ IDEA.
   User: rj
@@ -12,7 +13,7 @@
     <title>login</title>
 </head>
 <body>
-   <form id="sysLogin" action="loginAction" method="post">
+   <form id="sysLogin" action="${ctx}/login" method="post">
        <table>
            <tr>
                <td>用户名：</td>
@@ -22,11 +23,12 @@
                <td>密&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
                <td><input id="password" name="password" type="password" placeholder="请填写登录账号" /></td>
            </tr>
+           <tr><td colspan="2">记住我：<input type="checkbox" name="rememberMe" value="yes"/></tr>
            <tr>
                <td colspan="2"><input type="submit" value="登录"/></td>
            </tr>
        </table>
    </form>
-    <label style="color: rebeccapurple;">${errorInfo}</label>
+    <label style="color: rebeccapurple;">${message}</label>
 </body>
 </html>
