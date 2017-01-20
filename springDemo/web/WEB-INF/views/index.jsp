@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <%--
   Created by IntelliJ IDEA.
   User: rj
@@ -16,5 +18,6 @@
    性别，${user.sex}<br>
    邮箱，${user.email}<br>
    城市，${user.city}<br>
+  <a href="${ctx}/logout">退出</a>
   </body>
 </html>

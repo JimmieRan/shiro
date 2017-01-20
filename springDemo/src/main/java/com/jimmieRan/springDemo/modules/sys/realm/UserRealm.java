@@ -1,13 +1,14 @@
 package com.jimmieRan.springDemo.modules.sys.realm;
 
 import com.jimmieRan.springDemo.modules.sys.entity.User;
-import com.jimmieRan.springDemo.modules.sys.service.UserService;
+import com.jimmieRan.springDemo.modules.sys.service.UserServiceI;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>User: Zhang Kaitao
@@ -16,9 +17,14 @@ import org.apache.shiro.util.ByteSource;
  */
 public class UserRealm extends AuthorizingRealm {
 
-    private UserService userService;
+    @Autowired
+    UserServiceI userService;
 
-    public void setUserService(UserService userService) {
+    public UserServiceI getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserServiceI userService) {
         this.userService = userService;
     }
 
