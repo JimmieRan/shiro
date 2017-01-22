@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jimmieRan.springDemo.modules.sys.dao.ResourceDao">
+
+    <sql id="resourceColumns">
+        s.id,
+        s.name,
+        s.type,
+        s.url,
+        s.parent_id,
+        s.parent_ids,
+        s.permission,
+        s.available
+    </sql>
+
+    <select id="findOne" parameterType="long" resultType="com.jimmieRan.springDemo.modules.sys.entity.Resource">
+        SELECT
+        <include refid="resourceColumns"/>
+        FROM sys_resource s where s.id=#{resourceId}
+    </select>
+    <select id="findAll" resultType="com.jimmieRan.springDemo.modules.sys.entity.Resource">
+        SELECT
+        <include refid="resourceColumns"/>
+        FROM sys_resource s ORDER BY s.id
+    </select>
+</mapper>

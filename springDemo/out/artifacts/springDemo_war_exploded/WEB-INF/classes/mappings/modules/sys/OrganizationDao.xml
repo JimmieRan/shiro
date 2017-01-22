@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jimmieRan.springDemo.modules.sys.dao.OrganizationDao">
+
+    <sql id="organizationColumns">
+        o.id,
+        o.name,
+        o.parent_id,
+        o.parent_ids,
+        o.available
+    </sql>
+
+    <select id="findAll" resultType="com.jimmieRan.springDemo.modules.sys.entity.Organization">
+        SELECT <include refid="organizationColumns"/> FROM sys_organization o
+    </select>
+
+    <select id="findOne" resultType="com.jimmieRan.springDemo.modules.sys.entity.Organization">
+        SELECT <include refid="organizationColumns"/> FROM sys_organization o WHERE o.id=#{organizationId}
+    </select>
+
+</mapper>
