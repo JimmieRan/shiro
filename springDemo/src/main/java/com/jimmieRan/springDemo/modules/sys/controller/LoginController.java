@@ -28,7 +28,7 @@ public class LoginController {
         Object principal = subject.getPrincipal();
 
         if (principal != null){
-            return "index";
+            return "redirect://index";
         }
 
         return "login";
@@ -49,7 +49,7 @@ public class LoginController {
         Object principal = subject.getPrincipal();
 
         if (principal != null){
-            return "index";
+            return "redirect://index";
         }
 
         //登录验证失败，则跳转到登录页面并显示失败信息
@@ -59,11 +59,6 @@ public class LoginController {
             model.addAttribute(FormAuthenticationFilter.DEFAULT_MESSAGE_PARAM, message);
         }
         return "login";
-    }
-
-    @RequestMapping(value = "index")
-    public String index() {
-        return "index";
     }
 
 

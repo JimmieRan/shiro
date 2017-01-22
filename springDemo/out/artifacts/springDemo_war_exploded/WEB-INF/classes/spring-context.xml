@@ -21,6 +21,7 @@
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
     <context:component-scan base-package="com.jimmieRan.springDemo"><!-- base-package 如果多个，用“,”分隔 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
     <!-- 定义事务 -->
@@ -50,7 +51,7 @@
     <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="com.jimmieRan.springDemo.modules"/>
+        <property name="basePackage" value="com.jimmieRan.springDemo.modules.sys.dao"/>
     </bean>
 
 </beans>

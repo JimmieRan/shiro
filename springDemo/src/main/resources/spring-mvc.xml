@@ -21,12 +21,19 @@
     <context:component-scan base-package="com.jimmieRan.springDemo"
                             use-default-filters="false"><!-- base-package 如果多个，用“,”分隔 -->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
     <!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
 
     </mvc:annotation-driven>
+
+    <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 静态资源映射 -->
+    <mvc:resources mapping="/static/**" location="/WEB-INF/static/" cache-period="31536000"/>
 
     <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -45,12 +52,6 @@
         <property name="prefix" value="${web.view.prefix}"/>
         <property name="suffix" value="${web.view.suffix}"/>
     </bean>
-
-    <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
-    <mvc:default-servlet-handler />
-
-    <!-- 静态资源映射 -->
-    <mvc:resources mapping="/static/**" location="/static/" cache-period="31536000"/>
 
 
 </beans>

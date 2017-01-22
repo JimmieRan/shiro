@@ -83,7 +83,7 @@ public class UserServiceIImpl implements UserServiceI {
         if(user == null) {
             return Collections.EMPTY_SET;
         }
-        return roleService.findRoles(user.getRoleIds().toArray(new Long[0]));
+        return roleService.findRoles(user.getRoleAsList().toArray(new Long[0]));
     }
 
     /**
@@ -96,6 +96,6 @@ public class UserServiceIImpl implements UserServiceI {
         if(user == null) {
             return Collections.EMPTY_SET;
         }
-        return roleService.findPermissions(user.getRoleIds().toArray(new Long[0]));
+        return roleService.findPermissions(user.getRoleAsList().toArray(new Long[0]));
     }
 }

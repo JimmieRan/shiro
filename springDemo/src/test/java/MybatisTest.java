@@ -1,3 +1,4 @@
+import com.jimmieRan.springDemo.modules.sys.entity.User;
 import com.jimmieRan.springDemo.modules.sys.service.UserServiceI;
 import org.junit.Test;
 import org.junit.runner.RunWith;
