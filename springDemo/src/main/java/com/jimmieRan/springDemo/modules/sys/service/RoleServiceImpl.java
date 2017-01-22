@@ -15,7 +15,6 @@ import java.util.Set;
  * <p>Version: 1.0
  */
 @Service
-
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
@@ -59,7 +58,7 @@ public class RoleServiceImpl implements RoleService {
         for(Long roleId : roleIds) {
             Role role = findOne(roleId);
             if(role != null) {
-                resourceIds.addAll(role.getResourceIds());
+                resourceIds.addAll(role.getResourcesAsList());
             }
         }
         return resourceService.findPermissions(resourceIds);

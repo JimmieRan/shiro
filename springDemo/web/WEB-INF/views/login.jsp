@@ -17,7 +17,7 @@
        <table>
            <tr>
                <td>用户名：</td>
-               <td><input id="username" name="username" type="text" placeholder="请填写登录账号" /></td>
+               <td><input id="username" name="username" type="text" value="<shiro:principal/>" placeholder="请填写登录账号" /></td>
            </tr>
            <tr>
                <td>密&nbsp;&nbsp;&nbsp;&nbsp;码：</td>

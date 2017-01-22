@@ -43,6 +43,8 @@
 	<typeAliases>
 		<typeAlias type="com.jimmieRan.springDemo.modules.sys.entity.User" alias="User"/>
 		<typeAlias type="com.jimmieRan.springDemo.modules.sys.entity.Role" alias="Role"/>
+		<typeAlias type="com.jimmieRan.springDemo.modules.sys.entity.Organization" alias="Organization"/>
+		<typeAlias type="com.jimmieRan.springDemo.modules.sys.entity.Resource" alias="Resource"/>
 	</typeAliases>
 
 </configuration>

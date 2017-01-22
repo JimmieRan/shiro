@@ -2,6 +2,7 @@ package com.jimmieRan.springDemo.modules.sys.dao;
 
 
 import com.jimmieRan.springDemo.modules.sys.entity.Organization;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * <p>Date: 14-1-28
  * <p>Version: 1.0
  */
+@Component
 public interface OrganizationDao {
 
     public Organization createOrganization(Organization organization);
